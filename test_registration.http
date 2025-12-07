@@ -1,0 +1,27 @@
+# Test School Registration
+
+## Test 1: Check Subdomain
+GET http://127.0.0.1:8000/api/check-subdomain?subdomain=test-school
+
+## Test 2: Register School
+POST http://127.0.0.1:8000/api/register-school
+Content-Type: application/json
+
+{
+  "school_name": "Test School",
+  "subdomain": "test-school",
+  "admin_name": "Admin User",
+  "admin_email": "admin@testschool.com",
+  "admin_password": "password123",
+  "phone": "9876543210",
+  "address": "123 Test Street",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "pincode": "400001",
+  "board_affiliation": "CBSE",
+  "total_students": 100,
+  "subscription_plan": "trial"
+}
+
+## Test 3: Get Plans
+GET http://127.0.0.1:8000/api/subscription-plans
