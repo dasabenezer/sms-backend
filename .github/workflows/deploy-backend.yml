@@ -13,11 +13,11 @@ jobs:
     
     services:
       postgres:
-        image: postgres:15
+        image: postgres:17
         env:
-          POSTGRES_DB: school_sms_test
+          POSTGRES_DB: database-1
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_PASSWORD: Wm8xY8lV7eSRjOAeP3WL
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
