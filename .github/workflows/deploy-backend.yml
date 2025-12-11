@@ -93,6 +93,39 @@ jobs:
             # Pull latest code
             git pull origin main
             
+            # Create production .env from template
+            cp .env.production .env
+            
+            # Replace environment variables with secrets
+            sed -i "s|\${APP_KEY}|${{ secrets.APP_KEY }}|g" .env
+            sed -i "s|\${APP_URL}|http://${{ secrets.EC2_HOST }}|g" .env
+            sed -i "s|\${SANCTUM_STATEFUL_DOMAINS}|${{ secrets.EC2_HOST }}|g" .env
+            sed -i "s|\${SESSION_DOMAIN}|${{ secrets.EC2_HOST }}|g" .env
+            sed -i "s|\${DB_HOST}|${{ secrets.DB_HOST }}|g" .env
+            sed -i "s|\${DB_DATABASE}|${{ secrets.DB_DATABASE }}|g" .env
+            sed -i "s|\${DB_USERNAME}|${{ secrets.DB_USERNAME }}|g" .env
+            sed -i "s|\${DB_PASSWORD}|${{ secrets.DB_PASSWORD }}|g" .env
+            sed -i "s|\${REDIS_HOST}|${{ secrets.REDIS_HOST }}|g" .env
+            sed -i "s|\${AWS_ACCESS_KEY_ID}|${{ secrets.AWS_ACCESS_KEY_ID }}|g" .env
+            sed -i "s|\${AWS_SECRET_ACCESS_KEY}|${{ secrets.AWS_SECRET_ACCESS_KEY }}|g" .env
+            sed -i "s|\${AWS_DEFAULT_REGION}|${{ secrets.AWS_DEFAULT_REGION }}|g" .env
+            sed -i "s|\${AWS_BUCKET}|${{ secrets.AWS_BUCKET }}|g" .env
+            sed -i "s|\${MAIL_USERNAME}|${{ secrets.MAIL_USERNAME }}|g" .env
+            sed -i "s|\${MAIL_PASSWORD}|${{ secrets.MAIL_PASSWORD }}|g" .env
+            sed -i "s|\${RAZORPAY_KEY}|${{ secrets.RAZORPAY_KEY }}|g" .env
+            sed -i "s|\${RAZORPAY_SECRET}|${{ secrets.RAZORPAY_SECRET }}|g" .env
+            sed -i "s|\${RAZORPAY_WEBHOOK_SECRET}|${{ secrets.RAZORPAY_WEBHOOK_SECRET }}|g" .env
+            sed -i "s|\${MSG91_AUTH_KEY}|${{ secrets.MSG91_AUTH_KEY }}|g" .env
+            sed -i "s|\${MSG91_SENDER_ID}|${{ secrets.MSG91_SENDER_ID }}|g" .env
+            sed -i "s|\${TEXTLOCAL_API_KEY}|${{ secrets.TEXTLOCAL_API_KEY }}|g" .env
+            sed -i "s|\${TEXTLOCAL_SENDER}|${{ secrets.TEXTLOCAL_SENDER }}|g" .env
+            sed -i "s|\${WHATSAPP_API_URL}|${{ secrets.WHATSAPP_API_URL }}|g" .env
+            sed -i "s|\${WHATSAPP_API_TOKEN}|${{ secrets.WHATSAPP_API_TOKEN }}|g" .env
+            sed -i "s|\${CENTRAL_DOMAIN}|${{ secrets.CENTRAL_DOMAIN }}|g" .env
+            sed -i "s|\${GST_NUMBER}|${{ secrets.GST_NUMBER }}|g" .env
+            sed -i "s|\${BIOMETRIC_API_URL}|${{ secrets.BIOMETRIC_API_URL }}|g" .env
+            sed -i "s|\${BIOMETRIC_API_KEY}|${{ secrets.BIOMETRIC_API_KEY }}|g" .env
+            
             # Install/update dependencies
             composer install --no-dev --optimize-autoloader --no-interaction
             
